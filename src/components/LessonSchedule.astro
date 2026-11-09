@@ -1,0 +1,15 @@
+---
+interface Props {
+  schedule: { label: string; minutes: number; description: string }[];
+}
+const { schedule } = Astro.props;
+---
+<ol class="schedule">
+  {schedule.map((part, index) => (
+    <li>
+      <div class="schedule-meta"><span class="step-number">0{index + 1}</span><span>{part.minutes} min</span></div>
+      <span class="schedule-label">{part.label}</span>
+      <p>{part.description}</p>
+    </li>
+  ))}
+</ol>

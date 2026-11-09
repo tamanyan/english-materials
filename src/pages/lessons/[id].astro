@@ -1,0 +1,205 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LessonSchedule from '../../components/LessonSchedule.astro';
+
+export async function getStaticPaths() {
+  return (await getCollection('lessons')).map(lesson => ({ params: { id: lesson.id }, props: { lesson } }));
+}
+interface Props { lesson: CollectionEntry<'lessons'>; }
+const { lesson } = Astro.props;
+const { data } = lesson;
+const sections = [
+  ['meeting', 'The meeting'],
+  ['review', 'Review'],
+  ['summary', '60-second summary'],
+];
+---
+<BaseLayout title={`Lesson ${data.number}: ${data.title} — Business English`} description={data.description}>
+  <main id="main-content" class="lesson-main">
+    <div class="breadcrumb"><a href="/">All lessons</a><span aria-hidden="true">/</span><span>Lesson {String(data.number).padStart(2, '0')}</span></div>
+    <header class="lesson-hero">
+      <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> Lesson {String(data.number).padStart(2, '0')} <span class="metadata-divider">/</span> {data.topic}</p>
+      <h1>{data.title}</h1>
+      <p class="hero-description">{data.description}</p>
+      <div class="lesson-meta"><span>{data.duration}</span><span>5–10 min role-play</span><span class="role-view-label"><span data-for-role="student">Student view</span><span data-for-role="teacher">Teacher view</span></span></div>
+    </header>
+
+    <div class="document-layout">
+      <nav class="page-nav" aria-label="On this page">
+        <p class="eyebrow">In this lesson</p>
+        <ol>{sections.map(([id, label], index) => <li><a href={`#${id}`}><span class="nav-index">{String(index + 1).padStart(2, '0')}</span>{label}</a></li>)}</ol>
+        <a class="role-nav-link" data-for-role="student" href="#practice-phrases">Phrases to practice <span aria-hidden="true">↗</span></a>
+        <a class="teacher-nav-link" data-for-role="teacher" href="#teacher-notes">Teacher guide <span aria-hidden="true">↗</span></a>
+        <p class="nav-note">Read your own brief.<br />Keep the conversation open.</p>
+      </nav>
+
+      <article class="lesson-document" aria-label={`Lesson ${data.number} material`}>
+        <section id="meeting" class="document-section">
+          <p class="section-kicker">01 / The meeting · 5–10 minutes</p>
+          <h2>{data.overview.headline}</h2>
+          <p class="section-lead">{data.overview.context}</p>
+          <dl class="role-pair meeting-roles">
+            <div><dt>Student<span data-for-role="student"> / You</span></dt><dd>{data.overview.studentRole}</dd></div>
+            <div><dt>Teacher<span data-for-role="teacher"> / You</span></dt><dd>{data.overview.teacherRole}</dd></div>
+          </dl>
+          <div class="meeting-objective"><span class="eyebrow">Meeting objective</span><p>{data.overview.objective}</p></div>
+
+          <div class="core-content" id="student-brief" data-for-role="student">
+              <h3>Your brief</h3>
+              <p>{data.student.brief}</p>
+              <h3>What you know so far</h3>
+              <ul class="prose-list">{data.student.knownFacts.map(fact => <li>{fact}</li>)}</ul>
+              <h3>What you're trying to do</h3>
+              <ol class="prose-list goal-list">{data.student.goals.map(goal => <li>{goal}</li>)}</ol>
+              <h3>Expected outcome</h3><p>{data.overview.outcome}</p>
+              <p class="callout">{data.student.closing}</p>
+          </div>
+
+          <section id="practice-phrases" class="phrase-section" data-for-role="student" aria-labelledby="phrases-title">
+            <p class="eyebrow">Your language toolkit</p>
+            <h3 id="phrases-title">Phrases to practice</h3>
+            <p>{data.student.phrases.introduction}</p>
+            <p class="small-note">{data.student.phrases.practice}</p>
+            <div class="phrase-list">
+              {data.student.phrases.groups.map(group => (
+                <section class="phrase-item" aria-label={group.title}>
+                  <h4>{group.title}</h4>
+                  <p class="practice-phrase">{group.phrase}</p>
+                  <p class="phrase-purpose">{group.purpose}</p>
+                  <details class="supporting-details phrase-alternatives">
+                    <summary aria-label={`Alternative phrases: ${group.title}`}><span>Other ways to say it</span><span class="disclosure-symbol" aria-hidden="true"></span></summary>
+                    <div class="detail-content">
+                      <ul class="alternative-list">{group.alternatives.map(alternative => <li><p>{alternative.phrase}</p><p class="small-note">{alternative.note}</p></li>)}</ul>
+                    </div>
+                  </details>
+                </section>
+              ))}
+            </div>
+          </section>
+
+          <div id="teacher-notes" class="teacher-section" data-for-role="teacher">
+            <div class="teacher-content">
+              <p class="small-note">Keep this background to yourself until it comes up in the meeting. The role switch changes the reading view; both views are publicly accessible.</p>
+              <div class="teacher-role"><span class="eyebrow">Teacher preparation · about 5 minutes</span><h3>Your role: {data.overview.teacherRole}</h3><p>{data.teacher.role}</p></div>
+              <p class="guide-shortcuts"><a href="#teacher-opening">Suggested opening</a><a href="#discussion-guide">Discussion guide</a></p>
+              <h3>Quick start</h3>
+              <ol class="prose-list">{data.teacher.quickStart.map(step => <li>{step}</li>)}</ol>
+              <h3 id="teacher-opening">Suggested opening</h3>
+              <blockquote>{data.discussion.opening}</blockquote>
+              <h3>Expected outcome</h3><p>{data.overview.outcome}</p>
+
+              <details class="supporting-details teacher-supplement">
+                <summary><span>Teaching approach & timing options</span><span class="disclosure-symbol" aria-hidden="true"></span></summary>
+                <div class="detail-content">
+                  <h4>How to run the meeting</h4>
+                  <div class="principles">{data.teacher.principles.map(principle => <p>{principle}</p>)}</div>
+                  <h4>Choose your pace</h4>
+                  <div class="stacked-notes">{data.teacher.pacing.map(pace => <div><h5>{pace.title}</h5><p>{pace.text}</p></div>)}</div>
+                  <h4>The student's starting information</h4>
+                  <ul class="prose-list">{data.student.knownFacts.map(fact => <li>{fact}</li>)}</ul>
+                </div>
+              </details>
+
+              <h3>Information to reveal when asked</h3>
+              <p>{data.teacher.disclosure}</p>
+              <div class="information-cards">{data.teacher.information.map((info, index) => <section class="information-card"><div class="information-title"><span class="step-number">{String(index + 1).padStart(2, '0')}</span><h4>{info.topic}</h4></div><p class="reveal-cue"><span>Reveal after</span>{info.cue}</p><p>{info.response}</p></section>)}</div>
+              <details class="supporting-details teacher-supplement">
+                <summary><span>If the conversation needs support</span><span class="disclosure-symbol" aria-hidden="true"></span></summary>
+                <div class="detail-content">
+                  <h4>If the conversation stalls</h4><p>{data.teacher.stalled}</p>
+                  <h4>If you don't have the answer</h4><p>{data.teacher.unknown}</p>
+                </div>
+              </details>
+
+              <div class="teacher-divider"></div>
+              <p class="eyebrow">Use as needed</p>
+              <h3 class="guide-heading" id="discussion-guide">Discussion guide</h3>
+              <p>Pick what fits the conversation. You do not need to ask every question or use every challenge.</p>
+              <h4>Potential questions</h4>
+              <ul class="prose-list">{data.discussion.questions.map(question => <li>{question}</li>)}</ul>
+              <h4>Possible objections</h4>
+              <p class="small-note">Choose one that responds to the student's proposal.</p>
+              <div class="stacked-notes">{data.discussion.objections.map(item => <div><h5>{item.title}</h5><p>“{item.text}”</p></div>)}</div>
+              <details class="supporting-details teacher-supplement">
+                <summary><span>Extra challenges for a longer meeting</span><span class="disclosure-symbol" aria-hidden="true"></span></summary>
+                <div class="detail-content">
+                  <p class="small-note">Optional. Introduce no more than one unexpected development.</p>
+                  <div class="stacked-notes">{data.discussion.developments.map(item => <div><h4>{item.title}</h4><p>“{item.text}”</p></div>)}</div>
+                </div>
+              </details>
+              <details class="supporting-details teacher-supplement">
+                <summary><span>Example outcomes to keep in mind</span><span class="disclosure-symbol" aria-hidden="true"></span></summary>
+                <div class="detail-content">
+                  <p class="small-note">Keep these examples to yourself during the meeting. Let the student develop a proposal.</p>
+                  <div class="stacked-notes">{data.discussion.outcomes.map(item => <div><h4>{item.title}</h4><p>{item.text}</p></div>)}</div>
+                </div>
+              </details>
+              <p class="callout">{data.discussion.closing}</p>
+            </div>
+          </div>
+
+          <details class="supporting-details lesson-format">
+            <summary><span>Lesson format & timing</span><span class="disclosure-symbol" aria-hidden="true"></span></summary>
+            <div class="detail-content">
+              <p>{data.introduction}</p>
+              <h3>Your {data.duration.toLowerCase()} together</h3>
+              <LessonSchedule schedule={data.schedule} />
+              <p class="small-note">Use 8 minutes for the meeting as a starting point. Your teacher can adapt it to 5–10 minutes and adjust the review time.</p>
+              <div class="focus-line"><span class="eyebrow">Practice focus</span><ul>{data.skills.map(skill => <li>{skill}</li>)}</ul></div>
+            </div>
+          </details>
+        </section>
+
+        <section id="review" class="document-section">
+          <p class="section-kicker">02 / Review · 5 minutes</p>
+          <h2>How did it come across?</h2>
+          <p class="section-lead">{data.review.focus}</p>
+          <div class="core-content" data-for-role="student">
+              <h3>Reflect on the conversation</h3>
+              <ul class="prose-list">{data.review.questions.map(question => <li>{question}</li>)}</ul>
+          </div>
+          <div class="core-content" data-for-role="teacher">
+              <h3>Start with the student's view</h3>
+              <ul class="prose-list">{data.review.questions.map(question => <li>{question}</li>)}</ul>
+              <h3>Teacher's feedback</h3>
+              <ol class="prose-list">{data.review.teacherPrompts.map(prompt => <li>{prompt}</li>)}</ol>
+              <details class="supporting-details teacher-supplement">
+                <summary><span>Communication skills to listen for</span><span class="disclosure-symbol" aria-hidden="true"></span></summary>
+                <div class="detail-content">
+                  <p>{data.review.introduction}</p>
+                  <dl class="observation-list">{data.review.observations.map(observation => <div><dt>{observation.title}</dt><dd>{observation.text}</dd></div>)}</dl>
+                </div>
+              </details>
+          </div>
+        </section>
+
+        <section id="summary" class="document-section">
+          <p class="section-kicker">03 / Summarize · 4 minutes</p>
+          <h2>The 60-second summary</h2>
+          <p class="section-lead">{data.summary.focus}</p>
+          <ol class="summary-framework">{data.summary.structure.map((part, index) => <li><span class="step-number">{String(index + 1).padStart(2, '0')}</span><div><h3>{part.title}</h3><p>{part.text}</p></div></li>)}</ol>
+          <div class="core-content">
+            <h3>Prepare. Speak. Refine. Repeat.</h3>
+            <ol class="prose-list">{data.summary.steps.map(step => <li>{step}</li>)}</ol>
+          </div>
+          <details class="supporting-details">
+            <summary><span>Extra tips for a clearer summary</span><span class="disclosure-symbol" aria-hidden="true"></span></summary>
+            <div class="detail-content">
+              <p>{data.summary.introduction}</p>
+              <h3>Check for clarity</h3>
+              <ul class="prose-list">{data.summary.checks.map(check => <li>{check}</li>)}</ul>
+            </div>
+          </details>
+          <div class="core-content">
+            <h3>Wrap up · 1 minute</h3><p>{data.wrapUp}</p>
+          </div>
+        </section>
+        <div class="lesson-end">
+          <p class="small-note print-hint">Printing? Your selected role's main material is included. Open any optional tips you also want to include.</p>
+          <a class="text-link" href="/">Back to all lessons <span aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+    </div>
+  </main>
+</BaseLayout>

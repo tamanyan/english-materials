@@ -1,0 +1,53 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const lessons = (await getCollection('lessons')).sort((a, b) => a.data.number - b.data.number);
+const approach = [
+  { number: '01', title: 'Have the conversation', text: 'Step into a business meeting. Ask questions, work through concerns, and reach a shared decision.' },
+  { number: '02', title: 'Notice what worked', text: 'Review real moments from the meeting. Focus on understanding each other and making your point clearly.' },
+  { number: '03', title: 'Say it more simply', text: 'Summarize the outcome in 60 seconds. Get feedback, then try again with a clearer, more concise message.' },
+];
+---
+<BaseLayout>
+  <main id="main-content" class="home-main">
+    <section class="home-hero" aria-labelledby="home-title">
+      <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> A little practice. A better conversation.</p>
+      <h1 id="home-title">Make room for<br />better <span class="muted-word">conversations.</span></h1>
+      <p class="hero-description">Business English practice for the moments you can't script.<br class="desktop-break" /> Ask better questions. Find common ground. Make your point.</p>
+      <a class="button-primary" href="#lessons">Explore the lessons <span aria-hidden="true">↓</span></a>
+      <div class="hero-footnote"><span>20-minute sessions</span><span>Two people</span><span>Real discussion</span></div>
+    </section>
+
+    <section id="lessons" class="lesson-library" aria-labelledby="lessons-title">
+      <div class="section-heading"><div><p class="eyebrow">The materials</p><h2 id="lessons-title">Your next conversation</h2></div><span class="quiet-count">{lessons.length} {lessons.length === 1 ? 'lesson' : 'lessons'}</span></div>
+      <div class="lesson-list">
+        {lessons.map(({ id, data }) => (
+          <a class="lesson-card" href={`/lessons/${id}/`}>
+            <div class="lesson-card-index" aria-hidden="true">{String(data.number).padStart(2, '0')}</div>
+            <div class="lesson-card-body">
+              <p class="eyebrow">{data.topic} <span class="metadata-divider">/</span> {data.duration}</p>
+              <h3>{data.title}</h3>
+              <p>{data.description}</p>
+              <div class="lesson-card-roles"><span>{data.overview.studentRole}</span><span aria-hidden="true">↔</span><span>{data.overview.teacherRole}</span></div>
+            </div>
+            <span class="card-arrow" aria-hidden="true">↗</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="approach-section" aria-labelledby="approach-title">
+      <div class="section-heading"><div><p class="eyebrow">How it works</p><h2 id="approach-title">A meeting. A review. A clearer message.</h2></div></div>
+      <div class="approach-grid">
+        {approach.map(part => <div class="approach-item"><span class="step-number">{part.number}</span><h3>{part.title}</h3><p>{part.text}</p></div>)}
+      </div>
+    </section>
+
+    <aside class="philosophy-note" aria-label="Our approach">
+      <span class="eyebrow">The goal</span>
+      <p>Less pressure to be perfect.<br /><span class="muted-word">More practice being understood.</span></p>
+      <span class="note-caption">Natural business English. No specialist knowledge required.</span>
+    </aside>
+  </main>
+</BaseLayout>

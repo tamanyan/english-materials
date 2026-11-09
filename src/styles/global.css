@@ -1,0 +1,362 @@
+@layer base, layout, components, responsive;
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --paper: #fafaf8;
+    --surface: #f0f1ed;
+    --ink: #252824;
+    --secondary: #61665e;
+    --muted: #767c72;
+    --line: #dedfd8;
+    --accent: #647a5c;
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-family: var(--font);
+    color: var(--ink);
+    background: var(--paper);
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-padding-top: 2rem; }
+  body { margin: 0; font-size: 16px; line-height: 1.7; }
+  h1, h2, h3, h4, h5, p, blockquote, dl, dd, ol, ul { margin: 0; }
+  h1, h2, h3, h4, h5 { font-weight: 500; text-wrap: balance; }
+  h1 { letter-spacing: -.052em; line-height: 1.08; }
+  h2 { font-size: 32px; line-height: 1.22; letter-spacing: -.035em; }
+  h3 { font-size: 19px; line-height: 1.4; letter-spacing: -.018em; }
+  h4, h5 { font-size: 16px; line-height: 1.5; font-weight: 600; }
+  a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: .22em; }
+  a, summary, button, input { -webkit-tap-highlight-color: transparent; }
+  button, input { font: inherit; }
+  a:focus-visible, summary:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; border-radius: 2px; }
+  a:hover { text-decoration-color: var(--secondary); }
+  ::selection { background: #dce5d7; color: #252824; }
+  section[id] { scroll-margin-top: 2rem; }
+  p, li, dd { overflow-wrap: break-word; }
+}
+
+@layer layout {
+  .site-header { max-width: 1440px; margin: 0 auto; padding: 28px 48px; display: flex; align-items: center; justify-content: space-between; gap: 24px; border-bottom: 1px solid var(--line); }
+  .site-footer { max-width: 1344px; margin: 0 auto; padding: 28px 0 34px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 24px; font-size: 12px; color: var(--secondary); }
+  .home-main, .lesson-main { max-width: 1248px; margin: 0 auto; padding: 0 48px; }
+  .home-hero { padding: 96px 0 84px; }
+  .home-hero h1 { font-size: clamp(48px, 5.8vw, 80px); max-width: 1000px; margin-top: 28px; }
+  .home-hero .hero-description { margin-top: 30px; max-width: 690px; }
+  .home-hero .button-primary { margin-top: 30px; }
+  .lesson-library { padding: 50px 0 68px; border-top: 1px solid var(--line); }
+  .approach-section { padding: 64px 0 80px; border-top: 1px solid var(--line); }
+  .approach-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; margin-top: 40px; }
+  .philosophy-note { margin-bottom: 96px; padding: 52px 48px; background: var(--surface); border-radius: 4px; }
+  .breadcrumb { padding-top: 30px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; font-size: 13px; color: var(--secondary); }
+  .breadcrumb a { text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+  .lesson-hero { padding: 48px 0 56px; }
+  .lesson-hero h1 { font-size: clamp(40px, 4.7vw, 64px); max-width: 940px; margin: 24px 0; }
+  .lesson-hero .hero-description { max-width: 660px; }
+  .document-layout { display: grid; grid-template-columns: 208px minmax(0, 1fr); column-gap: 72px; align-items: start; border-top: 1px solid var(--line); }
+  .page-nav { position: sticky; top: 36px; padding-top: 44px; padding-bottom: 44px; }
+  .lesson-document { min-width: 0; max-width: 74ch; }
+  .document-section { padding: 46px 0 52px; border-bottom: 1px solid var(--line); }
+  .document-section:last-child { border-bottom: 0; }
+  .document-section > h2 { margin: 12px 0 20px; }
+  .document-section > h3 { margin: 30px 0 12px; }
+  .document-section > p + p { margin-top: 16px; }
+  .wrap-up-section { padding-bottom: 80px; }
+  .not-found { max-width: 1100px; min-height: 70vh; margin: auto; padding: 100px 48px; }
+  .not-found h1 { font-size: clamp(40px, 5vw, 64px); margin: 24px 0; }
+  .not-found p:not(.eyebrow) { max-width: 540px; color: var(--secondary); margin-bottom: 28px; }
+}
+
+@layer components {
+  .skip-link { position: fixed; top: 12px; left: 12px; z-index: 20; transform: translateY(-160%); padding: 10px 20px; background: var(--ink); color: white; border-radius: 4px; }
+  .skip-link:focus { transform: translateY(0); }
+  .wordmark { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; font-size: 15px; font-weight: 600; letter-spacing: -.02em; }
+  .brand-icon { flex: 0 0 auto; }
+  .wordmark-detail { font-weight: 400; color: var(--secondary); margin-left: 8px; }
+  .header-caption { color: var(--secondary); font-size: 12px; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+  .reader-controls { display: flex; align-items: center; gap: 12px; position: relative; flex-shrink: 0; }
+  .role-switch { display: flex; min-width: 0; gap: 3px; padding: 3px; margin: 0; border: 1px solid var(--line); border-radius: 7px; background: var(--surface); }
+  .role-switch label { position: relative; cursor: pointer; }
+  .role-switch input { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; }
+  .role-switch label > span { display: block; min-width: 66px; text-align: center; padding: 5px 10px; border-radius: 4px; font-size: 12px; line-height: 1.6; color: var(--secondary); }
+  .role-switch input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .copy-link { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 6px; background: transparent; color: var(--ink); cursor: pointer; min-width: 152px; font-size: 12px; line-height: 1.6; white-space: nowrap; }
+  .copy-link:hover { background: var(--surface); }
+  .copy-link:disabled { cursor: default; opacity: .65; }
+  .copy-fallback { position: absolute; z-index: 10; right: 0; top: calc(100% + 12px); width: min(380px, calc(100vw - 48px)); padding: 18px; background: white; border: 1px solid var(--line); border-radius: 6px; box-shadow: 0 8px 25px #25282412; }
+  .copy-fallback label { font-size: 12px; font-weight: 600; }
+  .copy-fallback input { width: 100%; margin: 8px 0; padding: 8px; border: 1px solid var(--line); border-radius: 3px; background: var(--paper); color: var(--ink); font-size: 12px; }
+  .copy-fallback p { font-size: 11px; color: var(--secondary); }
+  .no-script-note { max-width: 1248px; margin: 16px auto; padding: 0 48px; font-size: 12px; color: var(--secondary); }
+  .eyebrow, .section-kicker { font-size: 11px; line-height: 1.6; font-weight: 500; letter-spacing: .085em; text-transform: uppercase; color: var(--secondary); }
+  .status-dot { display: inline-block; width: 6px; height: 6px; margin: 0 9px 2px 0; border-radius: 50%; background: var(--accent); }
+  .muted-word { color: var(--muted); }
+  .hero-description { color: var(--secondary); font-size: 18px; line-height: 1.65; letter-spacing: -.012em; }
+  .button-primary { display: inline-flex; align-items: center; gap: 30px; padding: 12px 20px; border: 1px solid var(--ink); border-radius: 6px; background: var(--ink); color: #fff; text-decoration: none; font-size: 14px; line-height: 1.5; transition: background .18s; }
+  .button-primary:hover { background: #454b41; }
+  .hero-footnote, .lesson-meta { display: flex; gap: 0; flex-wrap: wrap; font-size: 12px; color: var(--secondary); }
+  .hero-footnote { margin-top: 42px; }
+  .hero-footnote > span + span::before, .lesson-meta > span + span::before { content: "·"; margin: 0 14px; color: var(--muted); }
+  .role-view-label { font-weight: 600; color: var(--ink); }
+  .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 24px; }
+  .section-heading h2 { margin-top: 10px; font-size: 28px; }
+  .quiet-count { color: var(--secondary); font-size: 12px; padding-bottom: 3px; white-space: nowrap; }
+  .lesson-list { margin-top: 30px; }
+  .lesson-card { display: flex; gap: 32px; position: relative; padding: 34px; border: 1px solid var(--line); border-radius: 6px; text-decoration: none; background: #fff; transition: border-color .18s, background .18s; }
+  .lesson-card:hover { background: #f4f5ef; border-color: #a8b0a0; }
+  .lesson-card-index { font-size: 34px; line-height: 1; letter-spacing: -.05em; color: #848b7e; padding-top: 3px; min-width: 48px; }
+  .lesson-card-body { max-width: 680px; padding-right: 36px; }
+  .lesson-card h3 { font-size: 27px; letter-spacing: -.03em; line-height: 1.25; margin: 12px 0; }
+  .lesson-card-body > p:not(.eyebrow) { color: var(--secondary); font-size: 15px; }
+  .metadata-divider { margin: 0 9px; color: #9b9f96; }
+  .lesson-card-roles { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; font-size: 12px; margin-top: 24px; color: var(--secondary); }
+  .card-arrow { position: absolute; top: 34px; right: 34px; font-size: 24px; line-height: 1; }
+  .step-number { font-size: 11px; font-weight: 500; letter-spacing: .04em; color: var(--secondary); font-variant-numeric: tabular-nums; }
+  .approach-item h3 { margin: 18px 0 12px; }
+  .approach-item p { font-size: 15px; color: var(--secondary); }
+  .philosophy-note > p { font-size: clamp(26px, 3vw, 36px); line-height: 1.3; letter-spacing: -.035em; margin: 22px 0; }
+  .note-caption { font-size: 12px; color: var(--secondary); }
+  .lesson-meta { margin-top: 24px; }
+  .page-nav ol { list-style: none; padding: 0; margin: 20px 0 0; }
+  .page-nav li + li { margin-top: 3px; }
+  .page-nav a { display: flex; align-items: baseline; gap: 12px; padding: 7px 0; text-decoration: none; font-size: 12px; line-height: 1.5; color: var(--secondary); }
+  .page-nav a:hover { color: var(--ink); text-decoration: underline; }
+  .page-nav .teacher-nav-link, .page-nav .role-nav-link { margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--line); justify-content: space-between; }
+  .nav-index { color: var(--secondary); font-size: 10px; }
+  .nav-note { font-size: 11px; color: var(--secondary); margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--line); }
+  .section-lead { color: #50574d; }
+  .schedule { list-style: none; padding: 0; margin-top: 20px; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; }
+  .schedule li { border-top: 1px solid #c7cbc1; padding-top: 12px; }
+  .schedule-meta { display: flex; justify-content: space-between; gap: 6px; font-size: 10px; color: var(--secondary); }
+  .schedule-label { display: block; font-size: 12px; line-height: 1.5; font-weight: 600; margin: 12px 0 7px; }
+  .schedule p { font-size: 11px; line-height: 1.6; color: var(--secondary); }
+  .small-note { font-size: 12px; color: var(--secondary); line-height: 1.7; }
+  .schedule + .small-note { margin-top: 20px; }
+  .focus-line { margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--line); }
+  .focus-line ul { display: flex; flex-wrap: wrap; list-style: none; gap: 6px 18px; padding: 0; margin-top: 8px; font-size: 12px; color: var(--secondary); }
+  .overview-list { margin-top: 28px; }
+  .overview-list > div { padding: 20px 0; border-top: 1px solid var(--line); }
+  .overview-list > div:last-child { padding-bottom: 0; }
+  .overview-list dt { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--secondary); margin-bottom: 6px; }
+  .overview-list dd { font-size: 15px; }
+  .role-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .meeting-roles { margin: 26px 0; padding: 20px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .meeting-roles dt { color: var(--secondary); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; }
+  .meeting-roles dd { margin-top: 5px; font-size: 16px; font-weight: 500; }
+  .meeting-objective { margin-bottom: 28px; }
+  .meeting-objective p { font-size: 18px; line-height: 1.6; letter-spacing: -.015em; margin-top: 8px; }
+  .supporting-details { border-top: 1px solid var(--line); font-size: 14px; }
+  .supporting-details > summary { display: flex; justify-content: space-between; align-items: center; gap: 18px; padding: 17px 0; cursor: pointer; list-style: none; font-size: 13px; color: var(--secondary); }
+  .supporting-details > summary::-webkit-details-marker { display: none; }
+  .supporting-details > summary:hover { color: var(--ink); }
+  details[open] > summary .disclosure-symbol::after { display: none; }
+  .detail-content { padding: 8px 0 24px; }
+  .detail-content h3 { margin: 24px 0 12px; font-size: 17px; }
+  .detail-content p + p { margin-top: 12px; }
+  .detail-content .schedule + .small-note { margin-top: 18px; }
+  .lesson-format { margin-top: 16px; }
+  .core-content { margin-top: 30px; }
+  .core-content > h3 { margin: 28px 0 12px; }
+  .core-content > h3:first-child { margin-top: 0; }
+  .phrase-section { margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--line); }
+  .phrase-section > h3 { font-size: 25px; margin: 8px 0 12px; }
+  .phrase-section > p:not(.eyebrow) { font-size: 14px; color: var(--secondary); }
+  .phrase-section > .small-note { margin-top: 8px; }
+  .phrase-list { margin-top: 24px; }
+  .phrase-item { padding: 22px 0 16px; border-top: 1px solid var(--line); }
+  .phrase-item > h4 { font-size: 11px; letter-spacing: .055em; text-transform: uppercase; color: var(--secondary); font-weight: 500; }
+  .practice-phrase { font-size: 19px; line-height: 1.55; letter-spacing: -.015em; margin: 10px 0; }
+  .phrase-purpose { font-size: 13px; line-height: 1.65; color: var(--secondary); }
+  .phrase-alternatives { border: 0; margin-top: 6px; }
+  .phrase-alternatives > summary { font-size: 12px; padding: 10px 0; }
+  .phrase-alternatives .detail-content { padding: 4px 0 12px; }
+  .alternative-list { list-style: none; padding: 0 0 0 16px; border-left: 2px solid var(--line); }
+  .alternative-list li + li { margin-top: 16px; }
+  .alternative-list li > p:first-child { font-size: 15px; }
+  .alternative-list .small-note { margin-top: 5px; }
+  .teacher-section { margin-top: 30px; }
+  .teacher-supplement { margin-top: 26px; }
+  .guide-shortcuts { display: flex; flex-wrap: wrap; gap: 12px 24px; margin-top: 18px; font-size: 12px; }
+  .lesson-end { padding: 18px 0 56px; }
+  #review > .supporting-details, #summary > .supporting-details { margin-top: 24px; }
+  .role-card { border: 1px solid var(--line); border-radius: 5px; padding: 28px; background: #fff; }
+  .role-card h3 { font-size: 23px; margin: 8px 0 14px; }
+  .role-card p { font-size: 15px; }
+  .prose-list { padding-left: 21px; }
+  .prose-list li { padding-left: 5px; }
+  .prose-list li + li { margin-top: 10px; }
+  .prose-list li::marker { color: var(--secondary); font-size: .85em; }
+  .goal-list { list-style: decimal-leading-zero; padding-left: 28px; }
+  .callout { margin-top: 26px; padding: 18px 22px; border-left: 2px solid #a3b199; background: var(--surface); font-size: 14px; line-height: 1.75; }
+  .disclosure-symbol { position: relative; width: 18px; height: 18px; flex-shrink: 0; }
+  .disclosure-symbol::before, .disclosure-symbol::after { position: absolute; content: ""; background: var(--ink); }
+  .disclosure-symbol::before { height: 1px; width: 14px; left: 2px; top: 8px; }
+  .disclosure-symbol::after { width: 1px; height: 14px; left: 8px; top: 2px; }
+  .teacher-content { font-size: 15px; }
+  .teacher-content h3 { margin-top: 32px; margin-bottom: 14px; font-size: 21px; }
+  .teacher-content h4 { margin-top: 26px; margin-bottom: 10px; }
+  .teacher-content h5 { margin-bottom: 6px; font-size: 14px; }
+  .teacher-role { padding: 24px 0; margin-top: 20px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .teacher-role p { margin-top: 10px; }
+  .teacher-content .teacher-role h3 { margin: 8px 0 14px; font-size: 23px; }
+  .principles { border-left: 2px solid var(--line); padding-left: 18px; }
+  .principles p + p { margin-top: 12px; }
+  .stacked-notes > div { margin: 18px 0; }
+  .stacked-notes h4 { font-size: 14px; margin: 0 0 6px; }
+  .information-cards { display: grid; gap: 16px; margin-top: 20px; }
+  .information-card { border: 1px solid var(--line); border-radius: 4px; padding: 20px; }
+  .information-title { display: flex; align-items: baseline; gap: 12px; }
+  .information-title h4 { margin: 0; font-size: 15px; }
+  .reveal-cue { margin: 12px 0; font-size: 12px; color: var(--secondary); padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+  .reveal-cue span { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 3px; }
+  .teacher-divider { height: 1px; background: var(--line); margin: 36px 0; }
+  .teacher-content .guide-heading { margin-top: 8px; font-size: 27px; }
+  blockquote { margin: 12px 0; padding: 18px 20px; background: var(--surface); border-radius: 3px; }
+  .print-hint { margin-top: 16px; }
+  .observation-list { border-top: 1px solid var(--line); }
+  .observation-list > div { display: grid; grid-template-columns: 148px minmax(0, 1fr); gap: 24px; padding: 16px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
+  .observation-list dt { font-weight: 500; }
+  .observation-list dd { color: var(--secondary); }
+  .summary-framework { list-style: none; padding: 0; margin-top: 28px; }
+  .summary-framework li { display: flex; align-items: baseline; gap: 20px; padding: 18px 0; border-top: 1px solid var(--line); }
+  .summary-framework li:last-child { border-bottom: 1px solid var(--line); }
+  .summary-framework h3 { font-size: 16px; margin-bottom: 4px; }
+  .summary-framework p { font-size: 14px; color: var(--secondary); }
+  .text-link { display: inline-flex; gap: 20px; margin-top: 28px; font-size: 13px; }
+}
+
+@layer responsive {
+  @media (min-width: 1500px) { .site-header { border-left: 1px solid var(--line); border-right: 1px solid var(--line); } }
+  @media (max-width: 1440px) { .site-footer { margin: 0 48px; } }
+  @media (max-width: 1000px) {
+    .site-header .wordmark-detail { display: none; }
+    .document-layout { grid-template-columns: 180px minmax(0, 1fr); column-gap: 36px; }
+    .schedule { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 24px; }
+    .approach-grid { gap: 28px; }
+    .header-caption { display: none; }
+  }
+  @media (max-width: 760px) {
+    .site-header { padding: 22px 24px; }
+    .wordmark { font-size: 14px; gap: 10px; }
+    .wordmark-detail { margin-left: 3px; font-size: 12px; }
+    .site-footer { margin: 0 24px; padding-top: 22px; font-size: 11px; }
+    .home-main, .lesson-main { padding: 0 24px; }
+    .home-hero { padding: 64px 0 56px; }
+    .home-hero h1 { font-size: clamp(42px, 7.9vw, 60px); margin-top: 24px; }
+    .home-hero .hero-description { margin-top: 24px; }
+    .hero-description { font-size: 16px; }
+    .desktop-break { display: none; }
+    .lesson-library { padding: 36px 0 48px; }
+    .section-heading h2 { font-size: 24px; }
+    .lesson-card { padding: 26px; gap: 18px; }
+    .lesson-card-index { min-width: 30px; font-size: 26px; }
+    .lesson-card h3 { font-size: 23px; }
+    .lesson-card-body { padding-right: 12px; }
+    .card-arrow { right: 20px; top: 26px; font-size: 21px; }
+    .approach-section { padding: 44px 0 48px; }
+    .approach-grid { grid-template-columns: 1fr; gap: 28px; margin-top: 28px; }
+    .approach-item { border-top: 1px solid var(--line); padding-top: 20px; }
+    .approach-item h3 { margin-top: 10px; }
+    .philosophy-note { margin-bottom: 48px; padding: 30px 26px; }
+    .lesson-hero { padding: 36px 0 36px; }
+    .lesson-hero h1 { font-size: clamp(36px, 6.2vw, 46px); letter-spacing: -.045em; }
+    .document-layout { display: block; }
+    .page-nav { position: static; padding: 26px 0; border-bottom: 1px solid var(--line); }
+    .page-nav ol { display: flex; flex-wrap: wrap; gap: 2px 24px; margin-top: 12px; }
+    .page-nav li + li { margin: 0; }
+    .page-nav .teacher-nav-link, .page-nav .role-nav-link { margin-top: 10px; padding-top: 12px; max-width: 145px; }
+    .nav-note { display: none; }
+    .document-section { padding: 36px 0 40px; }
+    h2 { font-size: 28px; }
+    .schedule { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+    .observation-list > div { grid-template-columns: 125px minmax(0, 1fr); gap: 16px; }
+    .wrap-up-section { padding-bottom: 56px; }
+    .not-found { padding: 64px 24px; }
+  }
+  @media (max-width: 600px) {
+    .site-header { flex-wrap: wrap; gap: 16px; }
+    .reader-controls { width: 100%; justify-content: space-between; gap: 12px; }
+    .role-switch { flex: 1; }
+    .role-switch label { flex: 1; }
+    .role-switch label > span { min-width: 0; padding: 5px 9px; }
+    .copy-link { min-width: 148px; padding: 10px; }
+    .no-script-note { padding: 0 24px; }
+  }
+  @media (max-width: 420px) {
+    .wordmark-detail { display: none; }
+    .home-hero h1 { font-size: 43px; }
+    .home-hero > .eyebrow { font-size: 10px; letter-spacing: .06em; }
+    .hero-footnote { font-size: 11px; }
+    .hero-footnote > span + span::before, .lesson-meta > span + span::before { margin: 0 8px; }
+    .lesson-card { padding: 22px; gap: 14px; }
+    .lesson-card-index { font-size: 22px; min-width: 24px; }
+    .lesson-card h3 { font-size: 22px; }
+    .lesson-card-body .eyebrow { font-size: 9px; }
+    .lesson-card-body .metadata-divider { margin: 0 4px; }
+    .card-arrow { right: 14px; top: 22px; }
+    .lesson-card-body > p:not(.eyebrow) { font-size: 14px; }
+    .lesson-card-roles { gap: 6px; font-size: 10px; }
+    .lesson-hero h1 { font-size: 36px; }
+    .lesson-meta { font-size: 10px; }
+    .schedule { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .schedule p { font-size: 12px; }
+    .role-card { padding: 22px; }
+    .information-card { padding: 16px; }
+    .information-title { gap: 9px; }
+    .observation-list > div { display: block; }
+    .observation-list dd { margin-top: 5px; }
+    .site-footer { flex-direction: column; gap: 5px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition: none !important; }
+  }
+}
+
+/* Keep the other role out of layout, focus order, accessibility output, and print. */
+[hidden],
+html[data-role="student"] [data-for-role="teacher"],
+html[data-role="teacher"] [data-for-role="student"] { display: none !important; }
+html[data-role="student"] .role-switch input[value="student"] + span,
+html[data-role="teacher"] .role-switch input[value="teacher"] + span { background: #fff; color: var(--ink); box-shadow: 0 1px 3px #25282412; }
+
+@media print {
+  @page { margin: 17mm; }
+  :root { background: white; color: #111; }
+  body { font-size: 10pt; line-height: 1.5; }
+  .site-header, .site-footer, .page-nav, .breadcrumb, .skip-link, .print-hint, .text-link, .button-primary, .disclosure-symbol { display: none !important; }
+  .home-main, .lesson-main, .not-found { max-width: none; margin: 0; padding: 0; }
+  .lesson-hero { padding: 0 0 18pt; }
+  .lesson-hero h1 { font-size: 30pt; max-width: 100%; margin: 12pt 0; }
+  .hero-description { font-size: 11pt; }
+  .document-layout { display: block; }
+  .lesson-document { max-width: none; }
+  .document-section { padding: 18pt 0; }
+  h2 { font-size: 19pt; }
+  h3 { font-size: 12pt; }
+  h4, h5 { font-size: 10pt; }
+  h1, h2, h3, h4, h5, dt, .section-kicker { break-after: avoid; }
+  p, li { orphans: 3; widows: 3; }
+  .schedule { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12pt; }
+  .role-card, .information-card, .summary-framework li, .observation-list > div, .schedule li, .phrase-item { break-inside: avoid; }
+  .role-card, .information-card, .callout, blockquote { background: white; box-shadow: none; }
+  .supporting-details:not([open]) { display: none !important; }
+  .supporting-details[open] > .detail-content { display: block !important; }
+  details[open]::details-content { content-visibility: visible; }
+  .supporting-details > summary { break-after: avoid; font-size: 11pt; color: #111; }
+  .detail-content { font-size: 10pt; }
+  .meeting-objective p { font-size: 12pt; }
+  .meeting-roles dd { font-size: 11pt; }
+  .teacher-content { font-size: 10pt; }
+  .practice-phrase { font-size: 12pt; }
+  .phrase-purpose, .phrase-section > p:not(.eyebrow) { font-size: 9pt; }
+  .teacher-content h3 { font-size: 14pt; }
+  .teacher-content .guide-heading { font-size: 17pt; }
+  .small-note { font-size: 9pt; }
+  .home-hero { padding: 0 0 30pt; }
+  .home-hero h1 { font-size: 38pt; }
+  .philosophy-note { margin: 0; }
+  a { text-decoration: none; }
+}

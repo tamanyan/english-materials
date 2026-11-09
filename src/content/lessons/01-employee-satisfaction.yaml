@@ -1,0 +1,283 @@
+number: 1
+title: Improving Employee Satisfaction Without Increasing Costs
+topic: People & culture
+description: Understand what is driving low morale, work through competing priorities, and agree on a practical first step.
+duration: 20 minutes
+skills:
+  - Spontaneous response
+  - Clarification
+  - Confirmation
+  - Active listening
+  - Discussion skills
+introduction: >-
+  Practice a realistic meeting, not a prepared speech. Ask questions before offering solutions,
+  explore the other person's concerns, and work toward a shared decision. Clear communication
+  matters more than perfect grammar. No HR or technical expertise is needed.
+schedule:
+  - label: Get ready
+    minutes: 2
+    description: Have a little small talk, read your brief, and confirm the roles.
+  - label: Hold the meeting
+    minutes: 8
+    description: Explore the problem, discuss options, and agree on next steps.
+  - label: Review
+    minutes: 5
+    description: Reflect on what came across clearly and what could be more concise.
+  - label: Summarize
+    minutes: 4
+    description: Give a 60-second summary, get feedback, and try again.
+  - label: Wrap up
+    minutes: 1
+    description: Choose one communication habit to practice next time.
+overview:
+  headline: Better morale. No extra spending.
+  context: >-
+    A services company with 200 employees is seeing lower employee satisfaction and more people
+    leaving. Management wants to improve the situation while keeping costs under control.
+    All company information in this lesson is fictional.
+  objective: >-
+    Understand the main problems and agree on a realistic way to improve employees' experience
+    without increasing spending.
+  studentRole: Business Consultant
+  teacherRole: HR Manager
+  outcome: >-
+    A shared view of the most important problem, one or two feasible improvements, and clear
+    next steps with owners and deadlines. If a decision needs more information or approval,
+    agree on who will get it and when you will meet again.
+student:
+  brief: >-
+    You are a business consultant meeting the HR manager for the first time. You have been
+    asked to help the company understand what is going wrong and choose a practical response.
+    You do not have the full picture yet.
+  knownFacts:
+    - The company has 200 employees.
+    - Employee satisfaction has declined, and more employees are leaving.
+    - Management wants improvements but is reluctant to increase spending.
+    - You are here to discuss options, not present a finished plan.
+  goals:
+    - Find out what has changed and what evidence the HR manager has.
+    - Clarify priorities, constraints, and who can approve a change.
+    - Check your understanding of the HR manager's concerns before making a recommendation.
+    - Discuss trade-offs and adapt your ideas when you hear an objection.
+    - Agree on a manageable next step, an owner, and a date to review progress.
+  closing: >-
+    Before ending the meeting, confirm what you have agreed, what is still open, and who will
+    do what next. You do not need to solve every problem today.
+  phrases:
+    introduction: Use these as starting points, replacing words in brackets with your own ideas.
+    practice: Pick two phrases to try naturally during the meeting. Adapt them to the conversation rather than working through a checklist.
+    groups:
+      - title: Respond to an unexpected concern
+        phrase: That's a fair concern. What would make this workable for your team?
+        purpose: Acknowledge the concern and invite the other person to help shape the solution.
+        alternatives:
+          - phrase: I hadn't considered that. Let me think that through for a moment.
+            note: Use this to take a brief pause before responding to a new point.
+      - title: Clarify an unclear point
+        phrase: Could you give me an example of what you mean?
+        purpose: Turn a broad or unclear statement into something you can discuss.
+        alternatives:
+          - phrase: When you say [term], what does that mean in practice?
+            note: Use this when a particular word or expectation needs to be more specific.
+      - title: Check your understanding
+        phrase: So your main concern is [concern]. Have I understood that correctly?
+        purpose: Show that you have listened and give the other person a chance to correct you.
+        alternatives:
+          - phrase: It sounds like [issue] matters most to you. Is that right?
+            note: Use this to check the priority behind someone's comments.
+      - title: Disagree constructively
+        phrase: I see the benefit. My concern is [concern]. Could we consider [alternative]?
+        purpose: Recognize the other person's reasoning before explaining a different view.
+        alternatives:
+          - phrase: I'm not sure that would address [issue]. What if we [alternative] instead?
+            note: Use this to challenge an idea while offering another way forward.
+      - title: Confirm the next steps
+        phrase: To confirm, [owner] will [action] by [date]. Does that work for you?
+        purpose: Make the action, responsibility, and timing explicit before closing.
+        alternatives:
+          - phrase: What still needs to be confirmed before we can move ahead?
+            note: Use this when a decision or action depends on missing information or approval.
+teacher:
+  role: >-
+    You are the HR manager. You want employees to stay, but you also need a proposal that
+    management will support. Be concerned and practical, rather than hostile. Ask the
+    consultant to explain how an idea would work in everyday terms.
+  quickStart:
+    - Read your role and scan the six information cards below. You only need to remember the main concerns; use the cards as a reference.
+    - Start with the suggested opening. Do not read out the extra background. Let the consultant decide what to ask.
+    - Answer relevant questions using the information cards. A natural follow-up is enough; the student does not need to guess a particular question.
+    - Once the student suggests an idea, raise one relevant objection. For a longer meeting, you may add one unexpected development.
+    - With about a minute left, ask what you can agree on today. Confirm the next action, its owner, and a review date.
+    - After the meeting, leave your role. Review one effective moment and one or two opportunities to be clearer, then run the summary exercise.
+  principles:
+    - Please treat this as a realistic business meeting rather than a traditional English lesson.
+    - Speak naturally and don't simplify your English unnecessarily.
+    - You don't need to explain everything upfront. Let the student ask questions when something is unclear.
+    - Feel free to challenge the student's ideas, introduce unexpected concerns, or ask follow-up questions.
+    - The goal is to practice effective communication, not perfect grammar.
+  pacing:
+    - title: 5-minute meeting
+      text: Spend about two minutes understanding one problem, two discussing one improvement and one objection, and one confirming actions. Skip unexpected developments. Use the extra lesson time for review or another summary attempt.
+    - title: 8-minute meeting · default
+      text: Use about three minutes to investigate, three to discuss a recommendation and a concern, and two to agree on responsibilities and a review date.
+    - title: 10-minute meeting
+      text: Allow four minutes to investigate, four to compare options and handle one unexpected development, and two to agree on actions. Keep the full session near 20 minutes by reducing review to four minutes and the summary exercise to three. For the shorter summary exercise, use 30 seconds each for preparation and feedback, keeping both 60-second speaking attempts.
+  disclosure: >-
+    Reveal the relevant information when the consultant asks about the topic, follows up on
+    a clue, or checks an assumption. Give a useful answer, then let them decide where to go
+    next. You do not need to cover every card. Keep these details out of your opening.
+  information:
+    - topic: Evidence of the problem
+      cue: Questions about the survey, the trend, or how serious the problem is.
+      response: >-
+        In our quarterly survey, favorable answers to the overall satisfaction question fell
+        from 72% last quarter to 58% this quarter. More employees are also choosing to leave,
+        although I don't have a confirmed turnover rate with me. The survey tells us there
+        is a problem; it doesn't establish a single cause.
+    - topic: What employees are saying
+      cue: Questions about complaints, workload, communication, or why people leave.
+      response: >-
+        Employees say priorities change at short notice, workloads feel unmanageable, and
+        managers don't always explain why decisions are made. Some departing employees
+        mentioned these issues too. We need to check which concerns matter most rather
+        than assume everyone feels the same way.
+    - topic: Different departments, different needs
+      cue: Questions about who is most affected or whether departments agree.
+      response: >-
+        Customer Support wants a more manageable workload. Sales wants quicker decisions
+        and earlier updates when plans change. A single company-wide activity might not
+        address both. Neither department wants another meeting without a clear purpose.
+    - topic: What has already been tried
+      cue: Questions about previous initiatives or employees' trust.
+      response: >-
+        We ran an employee survey and a few social events. There was no clear owner for
+        following up on the survey, and employees rarely heard what changed because of
+        their feedback. The events were well attended, but we saw no clear improvement
+        in the next survey. People are skeptical about another initiative.
+    - topic: Budget, time, and authority
+      cue: Questions about resources, approval, or what “no additional spending” means.
+      response: >-
+        There is no additional budget for pay increases, hiring, paid tools, or new events.
+        We can change how existing work time is used, but staff time still has a cost.
+        A proposal should replace or reduce something, rather than simply add work.
+        I can help arrange a small trial with a department manager's agreement. A
+        company-wide change needs senior management's approval.
+    - topic: Expectations and success
+      cue: Questions about the deadline, priorities, or how to measure progress.
+      response: >-
+        Senior management expects visible signs of improvement within three months. They
+        want a clear problem, an owner, and a way to judge progress. We can use existing
+        check-ins and a few short follow-up questions. We shouldn't promise that a brief
+        trial will immediately reduce turnover. An early improvement in workload or
+        clarity would be a reasonable sign to look for.
+  stalled: >-
+    If the conversation stalls, offer one small clue: “We've tried a few things before,
+    but employees weren't convinced.” Then pause. If the student proposes a solution
+    immediately, ask: “What would you want to understand before we choose an approach?”
+  unknown: >-
+    If asked for a number or detail that is not specified, say you don't have it yet and
+    offer to check. Do not invent a precise figure or a new constraint. Ask whether that
+    information is essential before a small trial can begin.
+discussion:
+  opening: >-
+    Thanks for making time. We're concerned about employee satisfaction and the number
+    of people leaving. We'd like your help finding a practical way forward, but management
+    is very cautious about spending. Where would you like to start?
+  questions:
+    - What do you think we should understand before deciding what to do?
+    - Which issue would you address first, and why?
+    - How would that work in a normal working week?
+    - What would we stop or change to make time for it?
+    - How could we tell whether this is helping?
+    - What would you need from me to get started?
+  objections:
+    - title: Another demand on people's time
+      text: I'm concerned that adding a weekly meeting would make the workload problem worse. Could we replace something we already do?
+    - title: Employees have heard this before
+      text: We asked for feedback last time, but people didn't see much follow-through. How would we make this feel different?
+    - title: A broad proposal with no clear owner
+      text: That sounds promising, but “improve communication” is quite broad. Who would do what, and what would change first?
+  developments:
+    - title: A manager pushes back
+      text: I've just heard that the Customer Support manager is worried about losing time during a busy period. Would you adapt the trial or start somewhere else?
+    - title: Management wants an earlier update
+      text: The leadership team would like an update in two weeks, even though the three-month goal hasn't changed. What could we honestly report by then?
+  outcomes:
+    - title: A clearer approach to priorities
+      text: >-
+        One possible agreement is a four-week trial in one willing department. Replace part
+        of an existing status meeting with a brief check of the week's priorities, what can
+        wait, and why anything has changed. The department manager owns the discussion;
+        HR checks whether employees find priorities clearer and reviews the trial with
+        the consultant after four weeks.
+    - title: A workload conversation with follow-through
+      text: >-
+        Another possibility is to use existing one-to-one meetings to identify one workload
+        problem, agree on what to stop or reprioritize, and report back on the action.
+        The manager owns the change; HR checks follow-through and gathers a short update
+        on whether work feels more manageable. Agree on a trial period and review date.
+    - title: More information before a decision
+      text: >-
+        If you cannot agree on an initiative, identify the exact missing information or
+        approval. For example, HR can check which manager would support a small trial,
+        while the consultant drafts a brief proposal. Set a date for the next discussion.
+  closing: >-
+    These are examples, not the correct answers. Accept other proposals that fit the
+    constraints and address the concerns raised. Before finishing, ask: “Could we confirm
+    what we've agreed, who will take each action, and when we'll review it?” Do not treat
+    an idea as approved for the whole company if it still needs management approval.
+review:
+  focus: Step out of your roles. Discuss one thing that worked and one point you could make more clearly. Focus on being understood, not perfect grammar.
+  introduction: >-
+    Step out of your roles. Focus on whether the conversation helped you understand each
+    other and make progress. Use actual moments from the meeting, rather than correcting
+    every sentence.
+  questions:
+    - What did you learn that changed your initial view of the problem?
+    - When did you check your understanding instead of making an assumption?
+    - Which point was hardest to explain clearly or briefly?
+  teacherPrompts:
+    - First, ask the student how the conversation felt and which point they wanted to make more clearly.
+    - Name one effective moment and explain its effect, such as a follow-up that uncovered a constraint or a summary that prevented a misunderstanding.
+    - Choose one or two moments to improve. Check the student's intended meaning, then help them express the main point first and remove unnecessary detail.
+    - Offer a shorter alternative based on what the student actually said. Ask them to try it in their own words. Correct grammar only when it obscures the meaning.
+  observations:
+    - title: Spontaneous response
+      text: Did you respond to a concern, or pause and ask a useful question when you needed more information?
+    - title: Clarification
+      text: Did you make vague words, constraints, or expectations more specific?
+    - title: Confirmation
+      text: Did you check that both people understood the problem and the agreement in the same way?
+    - title: Active listening
+      text: Did your recommendation respond to the HR manager's actual concerns?
+    - title: Discussion skills
+      text: Did you explain a reason, consider a trade-off, and help move the conversation toward a decision?
+summary:
+  focus: Give a colleague the meeting's conclusion in 60 seconds. Lead with the main point, get feedback, then try again.
+  introduction: >-
+    Imagine you are giving a colleague a quick update after the meeting. Take one minute
+    to organize your thoughts, then give a summary of no more than 60 seconds. Use your
+    actual discussion, including anything that is still undecided.
+  structure:
+    - title: Main issue
+      text: What is the most important problem you identified?
+    - title: Recommendation
+      text: What do you recommend, or what did you agree to explore?
+    - title: Reason
+      text: Why does that approach fit the problem and the constraints?
+    - title: Next steps
+      text: Who will do what, by when, and what still needs approval or clarification?
+  steps:
+    - Prepare for one minute. Use a few keywords if helpful; avoid writing a full script.
+    - Give your first 60-second summary. The teacher listens without interrupting.
+    - Spend one minute on feedback. The teacher checks the main point, any missing action, and one detail that could be shorter.
+    - Give a second summary of no more than 60 seconds, using the feedback.
+  checks:
+    - Could a colleague understand the main point without hearing the whole meeting?
+    - Is it clear what was agreed and what is only a proposal?
+    - Are the next action, owner, and timing specific?
+    - Could you remove a detail without losing the meaning?
+wrapUp: >-
+  Choose one habit to carry into your next real meeting. For example, check one assumption
+  before proposing a solution, or lead with your main point before explaining the details.
+  Tell your teacher which habit you chose and where you could use it.

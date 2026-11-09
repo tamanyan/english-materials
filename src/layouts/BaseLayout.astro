@@ -1,0 +1,54 @@
+---
+import '../styles/global.css';
+import ReaderControls from '../components/ReaderControls.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Business English — Practice for real conversations',
+  description = 'Thoughtful role-play materials for real business conversations. A short meeting, a useful review, and a clearer way to make your point.',
+} = Astro.props;
+---
+<!doctype html>
+<html lang="en" data-role="student">
+  <head>
+    <meta charset="UTF-8" />
+    <script is:inline>
+      // Resolve the reading role before paint. Keep the priority in sync with scripts/role.ts.
+      (() => {
+        const query = new URLSearchParams(location.search).get('role');
+        let saved;
+        try { saved = document.cookie.split(';').map(part => part.trim()).find(part => part.startsWith('business_english_role='))?.slice('business_english_role='.length); } catch {}
+        const valid = value => value === 'student' || value === 'teacher';
+        document.documentElement.dataset.role = valid(query) ? query : valid(saved) ? saved : 'student';
+      })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#fafaf8" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <a class="wordmark" href="/" aria-label="Business English home">
+        <svg class="brand-icon" aria-hidden="true" width="25" height="25" viewBox="0 0 25 25" fill="none"><path d="M4 5.5h17v12H10l-5 4v-4H4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 10h9M8 13.5h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <span>Business English<span class="wordmark-detail"> / Role-play materials</span></span>
+      </a>
+      <ReaderControls />
+    </header>
+    <noscript><p class="no-script-note">Student view is shown. Enable JavaScript to switch roles and copy a sharing link.</p></noscript>
+    <slot />
+    <footer class="site-footer">
+      <span>Business English</span>
+      <span>Make your point. Understand theirs.</span>
+    </footer>
+  </body>
+</html>
